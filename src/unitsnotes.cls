@@ -14,7 +14,7 @@
 
 \DeclareStringOption[english]{language}
 \DeclareStringOption[a4paper]{papersize}
-\DeclareStringOption[oneside]{side}
+\DeclareStringOption[twoside]{side}
 
 \DeclareStringOption{authors}
 \DeclareStringOption{course}
@@ -46,10 +46,10 @@
 \RequirePackage{geometry}
 \geometry{
     \unitsnotes@papersize,
-    top = 1in,
-    right = 0.8in,
-    bottom = 1in,
-    left = 0.8in
+    hmargin = 0.6in,
+    vmargin = 0.8in,
+    bindingoffset = 0pt,lmargin=1in, rmargin=1in,
+    showframe
 }
 
 \setlength{\parindent}{0pt}
@@ -111,15 +111,10 @@
 
 \AtBeginDocument{%
     %
-    % First page
+    % Title page
     %
-    \thispagestyle{empty}%
-    \newgeometry{
-        top = 1.2in,
-        bottom = 0.8in
-    }%
-    \begin{center}%
-        \large%
+    \begin{titlepage}%
+        \centering\large%
         %
         % Logo
         %
@@ -134,7 +129,7 @@
             \ifstrequal{\unitsnotes@coursetype}{master}{\bMasterIn}{\bBachelorIn}\\[10pt]%
             \textbf{\Large \unitsnotes@course}%
         \fi%
-        \\[80pt]%
+        \\[100pt]%
         %
         % Teaching
         %
@@ -147,7 +142,7 @@
             \textbf{\huge \MakeUppercase{\unitsnotes@teaching}}\\[40pt]%
             \unitsnotes@teachers
         \fi%
-        \\[100pt]%
+        \\[120pt]%
         %
         % Authors
         %
@@ -167,12 +162,10 @@
         \fi%
         \\[10pt]%
         \bLastEdit\ \today%
-    \end{center}%
+    \end{titlepage}%
     %
     % Table of Content
     %
-    \newpage%
-    \restoregeometry%
     \pagenumbering{roman}%
     \tableofcontents%
     \newpage%
