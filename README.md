@@ -69,7 +69,7 @@ Example of use:
 where first argument is the label and the second is the reference name.
 
 Base proof environment
-```
+```latex
 \begin{theorem}{}{}
     This is a test theorem.
 \end{theorem}
