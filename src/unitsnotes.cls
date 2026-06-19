@@ -37,7 +37,7 @@
 
 
 % ========================================
-% Page layout
+% Page settings
 % ========================================
 
 \RequirePackage[utf8]{inputenc}
@@ -46,10 +46,11 @@
 \RequirePackage{geometry}
 \geometry{
     \unitsnotes@papersize,
-    hmargin = 0.6in,
-    vmargin = 0.8in,
-    bindingoffset = 0pt,lmargin=1in, rmargin=1in,
-    showframe
+    hmargin = 0.8in,
+    top = 1in,
+    bottom = 0.8in,
+    bindingoffset = 0pt,
+    foot = 0pt
 }
 
 \setlength{\parindent}{0pt}
@@ -88,13 +89,58 @@
 
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
-\RequirePackage{hyperref}
-
 \RequirePackage{graphicx}
+\RequirePackage{hyperref}
 
 
 % ========================================
-% Layout
+% Fancy style
+% ========================================
+
+\RequirePackage{fancyhdr}
+
+\setlength{\footskip}{0.2in}
+
+\fancypagestyle{style}{%
+    \fancyhf{}%
+
+    % Even pages
+    \fancyhead[LE]{\thepage}%
+    \fancyhead[RE]{\nouppercase{\leftmark}}%
+
+    % Odd pages
+    \fancyhead[LO]{\nouppercase{\leftmark}}%
+    \fancyhead[RO]{\thepage}%
+
+    % Header
+    \renewcommand{\headrulewidth}{0.4pt}%
+
+    % Footer
+    \fancyfoot{}%
+    \renewcommand{\footrulewidth}{0pt}%
+}
+
+% Chapter page
+\fancypagestyle{plain}{%
+    \fancyhf{}%
+
+    % Even pages
+    \fancyhead[LE]{\thepage}%
+
+    % Odd pages
+    \fancyhead[RO]{\thepage}%
+
+    \renewcommand{\headrulewidth}{0.4pt}%
+
+    \fancyfoot{}%
+    \renewcommand{\footrulewidth}{0pt}%
+}
+
+\raggedbottom
+
+
+% ========================================
+% Title pages
 % ========================================
 
 \RequirePackage{etoolbox}
@@ -110,6 +156,8 @@
 }
 
 \AtBeginDocument{%
+    \frontmatter%
+    \pagestyle{empty}%
     %
     % Title page
     %
@@ -140,7 +188,7 @@
         \else%
             {\Large \bNotesOf}\\[15pt]%
             \textbf{\huge \MakeUppercase{\unitsnotes@teaching}}\\[40pt]%
-            \unitsnotes@teachers
+            \unitsnotes@teachers%
         \fi%
         \\[120pt]%
         %
@@ -163,11 +211,16 @@
         \\[10pt]%
         \bLastEdit\ \today%
     \end{titlepage}%
+    \cleardoublepage%
     %
     % Table of Content
     %
-    \pagenumbering{roman}%
+    \setcounter{page}{1}
     \tableofcontents%
-    \newpage%
-    \pagenumbering{arabic}%
+    \cleardoublepage%
+    %
+    % Content
+    %
+    \mainmatter%
+    \pagestyle{style}%
 }
