@@ -9,7 +9,7 @@ Base class for write UniTs notes in Latex.
 | Option    | Default | Allowed values   | Description                                   |
 | --------- | ------- | ---------------- | --------------------------------------------- |
 | language  | english | english, italian | Document language                             |
-| papersize | a4paper |                  | For allowed valye see geometry package manual |
+| papersize | a4paper |                  | For allowed value see geometry package manual |
 | side      | twoside | oneside, twoside |                                               |
 
 ### Content options
