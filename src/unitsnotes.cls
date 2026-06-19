@@ -91,7 +91,6 @@
 \RequirePackage{hyperref}
 
 \RequirePackage{graphicx}
-\graphicspath{ {./unitsnotes.statics/} }
 
 
 % ========================================
@@ -101,11 +100,11 @@
 \RequirePackage{etoolbox}
 \RequirePackage{ifthen}
 
-\def\dep{units.pdf}
-\ifthenelse{\equal{\unitsnotes@department}{deams}}{\def\dep{departments/deams.pdf}}{
-    \ifthenelse{\equal{\unitsnotes@department}{df}}{\def\dep{departments/df.pdf}}{
-        \ifthenelse{\equal{\unitsnotes@department}{dia}}{\def\dep{departments/dia.pdf}}{
-            \ifthenelse{\equal{\unitsnotes@department}{mige}}{\def\dep{departments/mige.pdf}}{}
+\def\dep{./unitsnotes.statics/units.pdf}
+\ifthenelse{\equal{\unitsnotes@department}{deams}}{\def\dep{./unitsnotes.statics/departments/deams.pdf}}{
+    \ifthenelse{\equal{\unitsnotes@department}{df}}{\def\dep{./unitsnotes.statics/departments/df.pdf}}{
+        \ifthenelse{\equal{\unitsnotes@department}{dia}}{\def\dep{./unitsnotes.statics/departments/dia.pdf}}{
+            \ifthenelse{\equal{\unitsnotes@department}{mige}}{\def\dep{./unitsnotes.statics/departments/mige.pdf}}{}
         }
     }
 }
