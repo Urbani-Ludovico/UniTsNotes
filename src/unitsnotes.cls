@@ -130,7 +130,7 @@
     % Odd pages
     \fancyhead[RO]{\thepage}%
 
-    \renewcommand{\headrulewidth}{0.4pt}%
+    \renewcommand{\headrulewidth}{0pt}%
 
     \fancyfoot{}%
     \renewcommand{\footrulewidth}{0pt}%
