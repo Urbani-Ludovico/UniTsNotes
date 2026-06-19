@@ -202,7 +202,6 @@
         \else%
             \bAA\ \unitsnotes@year\\[10pt]%
         \fi%
-        \\[10pt]%
         \bLastEdit\ \today%
     \end{titlepage}%
     \cleardoublepage%
