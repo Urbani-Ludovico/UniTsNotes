@@ -24,6 +24,15 @@
 \DeclareStringOption{teaching}
 \DeclareStringOption{year}
 
+\DeclareStringOption{stylealgorithm}
+\DeclareStringOption{styledefinition}
+\DeclareStringOption{stylelemma}
+\DeclareStringOption{styleobservation}
+\DeclareStringOption{styleproof}
+\DeclareStringOption{styleproperty}
+\DeclareStringOption{styleproposition}
+\DeclareStringOption{styletheorem}
+
 \ProcessKeyvalOptions*
 
 
@@ -72,6 +81,15 @@
         \SetString{\bMasterIn}{Laurea Magistrale in}
         \SetString{\bNotes}{Appunti}
         \SetString{\bNotesOf}{Appunti di}
+
+        \SetString{\bAlgorithm}{Algoritmo}
+        \SetString{\bDefinition}{Definizione}
+        \SetString{\bLemma}{Lemma}
+        \SetString{\bObservation}{Osservazione}
+        \SetString{\bProof}{Dimostrazione}
+        \SetString{\bProperty}{Proprietà}
+        \SetString{\bProposition}{Proposizione}
+        \SetString{\bTheorem}{Teorema}
     \EndBabelCommands
     
     \StartBabelCommands*{english}{captions}
@@ -81,6 +99,15 @@
         \SetString{\bMasterIn}{Master's Degree in}
         \SetString{\bNotes}{Notes}
         \SetString{\bNotesOf}{Notes of}
+
+        \SetString{\bAlgorithm}{Algorithm}
+        \SetString{\bDefinition}{Definition}
+        \SetString{\bLemma}{Lemma}
+        \SetString{\bObservation}{Observation}
+        \SetString{\bProof}{Proof}
+        \SetString{\bProperty}{Property}
+        \SetString{\bProposition}{Proposition}
+        \SetString{\bTheorem}{Theorem}
     \EndBabelCommands
 }
 
@@ -93,6 +120,7 @@
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
+\RequirePackage{xcolor}
 
 
 % ========================================
@@ -216,4 +244,72 @@
     %
     \mainmatter%
     \pagestyle{style}%
+}
+
+
+% ========================================
+% Theorem environments
+% ========================================
+
+\RequirePackage[many]{tcolorbox}
+
+\tcbset{
+    style/.style={
+        width=\textwidth,
+        top=8pt,
+        bottom=8pt,
+        left=5pt,
+        right=5pt,
+        toptitle=2pt,
+        bottomtitle=2pt,
+        lefttitle=5pt,
+        righttitle=5pt,
+        colframe=cyan,
+        coltitle=white,
+        fonttitle=\bfseries,
+        colback=white,
+        coltext=black,
+        sharp corners,
+        rounded corners=downhill,
+        arc=5pt,
+        boxrule=1pt,
+        breakable,
+        enhanced jigsaw,
+        pad at break*=0mm,
+        break at=0pt,
+        before skip=20pt,
+        after skip=20pt,
+        after skip=20pt
+    }
+}
+
+\NewDocumentCommand{\NewTcb}{s m m m m}{%
+    \IfBooleanTF{#1}{%
+        % Starred version
+        \newtcbtheorem[no counter]{#2}{#4}{style,#5}{#3}%
+    }{%
+        % Normal version
+        \newtcbtheorem[auto counter, number within=chapter]{#2}{#4}{style,#5}{#3}%
+    }%
+}
+
+\NewTcb{algorithm}{alg}{\bAlgorithm}{colframe=orange!75!black,\unitsnotes@styledefinition}
+\NewTcb{definition}{def}{\bDefinition}{colframe=cyan!75!black,\unitsnotes@styledefinition}
+\NewTcb{lemma}{lm}{\bLemma}{colframe=red!75!black,\unitsnotes@stylelemma}
+\NewTcb{observation}{obs}{\bObservation}{colframe=green!75!black,\unitsnotes@styleobservation}
+\NewTcb{property}{prp}{\bProperty}{colframe=red!75!black,\unitsnotes@styleobservation}
+\NewTcb{proposition}{prop}{\bProposition}{colframe=red!75!black,\unitsnotes@styleobservation}
+\NewTcb{theorem}{th}{\bTheorem}{colframe=red!75!black,\unitsnotes@styletheorem}
+
+\NewTcb*{proof}{pr}{\bProof}{%
+    colframe=white,%
+    boxrule=0pt,%
+    overlay={%
+        \draw[red!75!black, line width=1pt] ([xshift=0.5pt]frame.north west) -- ([xshift=0.5pt]frame.south west);%
+        \node[anchor=east, yshift=5pt] at (frame.south east) {$\square$};%
+    },%
+    sharp corners,%
+    coltitle=black,%
+    colbacktitle=white,%
+    \unitsnotes@styleproof%
 }
