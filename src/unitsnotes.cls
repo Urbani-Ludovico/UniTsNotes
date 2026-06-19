@@ -54,6 +54,9 @@
 
 \setlength{\parindent}{0pt}
 
+\RequirePackage{fontspec}
+\setmainfont{Latin Modern Roman}
+
 
 % ========================================
 % Babel
@@ -168,40 +171,34 @@
         % Course
         %
         \ifx\unitsnotes@course\@empty%
-            \ \\[10pt]%
-            \textbf{\Large \ }%
         \else%
             \ifstrequal{\unitsnotes@coursetype}{master}{\bMasterIn}{\bBachelorIn}\\[10pt]%
             \textbf{\Large \unitsnotes@course}%
         \fi%
-        \\[100pt]%
+        \vfill%
         %
         % Teaching
         %
         \ifx\unitsnotes@teaching\@empty%
-            {\Large \ }\\[15pt]%
-            \textbf{\huge \bNotes }\\[40pt]%
-            \ %
+            \textbf{\huge \bNotes }%
         \else%
             {\Large \bNotesOf}\\[15pt]%
             \textbf{\huge \MakeUppercase{\unitsnotes@teaching}}\\[40pt]%
             \unitsnotes@teachers%
         \fi%
-        \\[120pt]%
+        \vfill%
         %
         % Authors
         %
         \ifx\unitsnotes@authors\@empty%
-            \ %
         \else%
             \unitsnotes@authors%
         \fi%
-        \\[100pt]%
+        \vfill%
         %
         % Dates
         %
         \ifx\unitsnotes@year\@empty%
-            \ %
         \else%
             \bAA\ \unitsnotes@year%
         \fi%

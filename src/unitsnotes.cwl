@@ -1,6 +1,7 @@
 
 \LoadClass{book}
 myclass:language#K
+myclass:margins#K
 myclass:papersize#K
 myclass:side#K
 myclass:authors#K
@@ -13,14 +14,6 @@ myclass:year#K
 
 
 % ========================================
-% Layout
-% ========================================
-
-#include:etoolbox
-#include:ifthen
-
-
-% ========================================
 % Packages
 % ========================================
 
@@ -28,3 +21,11 @@ myclass:year#K
 #include:amssymb
 #include:hyperref
 #include:graphicx
+
+
+% ========================================
+% Layout
+% ========================================
+
+#include:etoolbox
+#include:ifthen
