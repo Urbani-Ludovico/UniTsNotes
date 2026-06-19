@@ -16,9 +16,12 @@
 \DeclareStringOption[a4paper]{papersize}
 \DeclareStringOption[oneside]{side}
 
+\DeclareStringOption{authors}
 \DeclareStringOption{course}
 \DeclareStringOption{coursetype}
+\DeclareStringOption{teachers}
 \DeclareStringOption{teaching}
+\DeclareStringOption{year}
 
 \ProcessKeyvalOptions*
 
@@ -59,6 +62,8 @@
 
 \AddToHook{package/babel/after}{
     \StartBabelCommands*{italian}{captions}
+        \SetString{\bAA}{Anno accademico}
+        \SetString{\bLastEdit}{Aggiornato il}
         \SetString{\bBachelorIn}{Corso di Laurea in}
         \SetString{\bMasterIn}{Laurea Magistrale in}
         \SetString{\bNotes}{Appunti}
@@ -66,12 +71,24 @@
     \EndBabelCommands
     
     \StartBabelCommands*{english}{captions}
+        \SetString{\bAA}{Academic Year}
         \SetString{\bBachelorIn}{Bachelor in}
+        \SetString{\bLastEdit}{Last edit}
         \SetString{\bMasterIn}{Master's Degree in}
         \SetString{\bNotes}{Notes}
         \SetString{\bNotesOf}{Notes of}
     \EndBabelCommands
 }
+
+
+% ========================================
+% Other Packages
+% ========================================
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{hyperref}
+\RequirePackage{graphicx}
 
 
 % ========================================
@@ -95,23 +112,45 @@
         % Teaching
         %
         \ifx\unitsnotes@teaching\@empty%
-            \ \\[10pt]%
-            \textbf{\LARGE \bNotes }
+            {\Large \ }\\[10pt]%
+            \textbf{\huge \bNotes }\\[20pt]%
+            \ %
         \else%
-            \bNotesOf\\[10pt]%
-            \textbf{\LARGE \MakeUppercase{\unitsnotes@teaching}}%
+            {\Large \bNotesOf}\\[10pt]%
+            \textbf{\huge \MakeUppercase{\unitsnotes@teaching}}\\[20pt]%
+            \unitsnotes@teachers
+        \fi%
+        \\[50pt]%
+        %
+        % Authors
+        %
+        \ifx\unitsnotes@authors\@empty%
+            \ %
+        \else%
+            \unitsnotes@authors%
         \fi%
         \\[50pt]%
         %
         % Course
         %
         \ifx\unitsnotes@course\@empty%
-            \ \\[10pt]%
-            \textbf{\Large \ }
+            \ \\[5pt]%
+            \textbf{\ }%
         \else%
-            \ifstrequal{\unitsnotes@coursetype}{master}{\bMasterIn}{\bBachelorIn}\\[10pt]%
-            \textbf{\Large \unitsnotes@course}%
+            \ifstrequal{\unitsnotes@coursetype}{master}{\bMasterIn}{\bBachelorIn}\\[5pt]%
+            \textbf{\unitsnotes@course}%
         \fi%
+        \\[50pt]%
+        %
+        % Dates
+        %
+        \ifx\unitsnotes@year\@empty%
+            \ %
+        \else%
+            \bAA\ \unitsnotes@year%
+        \fi%
+        \\[10pt]%
+        \bLastEdit\ \today%
     \end{center}%
     %
     % Table of Content
@@ -120,12 +159,3 @@
     \restoregeometry%
     \tableofcontents%
 }
-
-% ========================================
-% Packages
-% ========================================
-
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
-\RequirePackage{hyperref}
-\RequirePackage{graphicx}
