@@ -49,8 +49,7 @@
     hmargin = 0.8in,
     top = 1in,
     bottom = 0.8in,
-    bindingoffset = 0pt,
-    foot = 0pt
+    bindingoffset = 0pt
 }
 
 \setlength{\parindent}{0pt}
@@ -98,8 +97,6 @@
 % ========================================
 
 \RequirePackage{fancyhdr}
-
-\setlength{\footskip}{0.2in}
 
 \fancypagestyle{style}{%
     \fancyhf{}%
@@ -215,7 +212,7 @@
     %
     % Table of Content
     %
-    \setcounter{page}{1}
+    \setcounter{page}{1}%
     \tableofcontents%
     \cleardoublepage%
     %
