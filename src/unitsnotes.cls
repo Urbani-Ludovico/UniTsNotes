@@ -13,6 +13,7 @@
     prefix=unitsnotes@
 }
 
+\DeclareStringOption[english]{language}
 \DeclareStringOption[a4paper]{papersize}
 \DeclareStringOption[oneside]{side}
 
@@ -49,4 +50,4 @@
 
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
-\RequirePackage[italian]{babel}
+\RequirePackage[\unitsnotes@language]{babel}
