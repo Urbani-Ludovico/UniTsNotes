@@ -1,0 +1,2 @@
+
+\LoadClass{book}#a
