@@ -51,3 +51,13 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage[T1]{fontenc}
 \RequirePackage[\unitsnotes@language]{babel}
+
+
+% ========================================
+% Packages
+% ========================================
+
+\RequirePackage{amsmath}
+\RequirePackage{amssymb}
+\RequirePackage{hyperref}
+\RequirePackage{graphicx}
