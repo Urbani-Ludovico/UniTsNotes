@@ -1,2 +1,4 @@
 
-\LoadClass{book}#a
+\LoadClass{book}
+myclass:papersize#K
+myclass:side#K

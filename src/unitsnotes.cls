@@ -1,9 +1,31 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{unitsnotes}[2026/06/01 Latex class for UniTs notes]
 
-\LoadClass[
-	oneside
-]{book}
+
+% ========================================
+% Options
+% ========================================
+
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+    family=unitsnotes,
+    prefix=unitsnotes@
+}
+
+\DeclareStringOption[a4paper]{papersize}
+\DeclareStringOption[oneside]{side}
+
+\ProcessKeyvalOptions*
+
+
+% ========================================
+% Class extension
+% ========================================
+
+\PassOptionsToClass{\unitsnotes@side}{book}
+
+\LoadClass{book}
 
 
 % ========================================
@@ -11,7 +33,7 @@
 % ========================================
 
 \RequirePackage[
-    a4paper,
+    \unitsnotes@papersize,
     top = 1in,
     right = 0.8in,
     bottom = 1in,
