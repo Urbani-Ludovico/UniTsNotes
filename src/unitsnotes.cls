@@ -174,5 +174,8 @@
     %
     \newpage%
     \restoregeometry%
+    \pagenumbering{roman}%
     \tableofcontents%
+    \newpage%
+    \pagenumbering{arabic}%
 }
