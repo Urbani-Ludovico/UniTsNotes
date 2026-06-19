@@ -200,7 +200,7 @@
         %
         \ifx\unitsnotes@year\@empty%
         \else%
-            \bAA\ \unitsnotes@year%
+            \bAA\ \unitsnotes@year\\[10pt]%
         \fi%
         \\[10pt]%
         \bLastEdit\ \today%
