@@ -19,6 +19,7 @@
 \DeclareStringOption{authors}
 \DeclareStringOption{course}
 \DeclareStringOption{coursetype}
+\DeclareStringOption{department}
 \DeclareStringOption{teachers}
 \DeclareStringOption{teaching}
 \DeclareStringOption{year}
@@ -88,7 +89,9 @@
 \RequirePackage{amsmath}
 \RequirePackage{amssymb}
 \RequirePackage{hyperref}
+
 \RequirePackage{graphicx}
+\graphicspath{ {./unitsnotes.statics/} }
 
 
 % ========================================
@@ -96,6 +99,16 @@
 % ========================================
 
 \RequirePackage{etoolbox}
+\RequirePackage{ifthen}
+
+\def\dep{units.pdf}
+\ifthenelse{\equal{\unitsnotes@department}{deams}}{\def\dep{departments/deams.pdf}}{
+    \ifthenelse{\equal{\unitsnotes@department}{df}}{\def\dep{departments/df.pdf}}{
+        \ifthenelse{\equal{\unitsnotes@department}{dia}}{\def\dep{departments/dia.pdf}}{
+            \ifthenelse{\equal{\unitsnotes@department}{mige}}{\def\dep{departments/mige.pdf}}{}
+        }
+    }
+}
 
 \AtBeginDocument{%
     %
@@ -109,18 +122,33 @@
     \begin{center}%
         \large%
         %
+        % Logo
+        %
+        \includegraphics[height=1in,width=\textwidth,keepaspectratio]{\dep}\\[50pt]%
+        %
+        % Course
+        %
+        \ifx\unitsnotes@course\@empty%
+            \ \\[10pt]%
+            \textbf{\Large \ }%
+        \else%
+            \ifstrequal{\unitsnotes@coursetype}{master}{\bMasterIn}{\bBachelorIn}\\[10pt]%
+            \textbf{\Large \unitsnotes@course}%
+        \fi%
+        \\[80pt]%
+        %
         % Teaching
         %
         \ifx\unitsnotes@teaching\@empty%
-            {\Large \ }\\[10pt]%
-            \textbf{\huge \bNotes }\\[20pt]%
+            {\Large \ }\\[15pt]%
+            \textbf{\huge \bNotes }\\[40pt]%
             \ %
         \else%
-            {\Large \bNotesOf}\\[10pt]%
-            \textbf{\huge \MakeUppercase{\unitsnotes@teaching}}\\[20pt]%
+            {\Large \bNotesOf}\\[15pt]%
+            \textbf{\huge \MakeUppercase{\unitsnotes@teaching}}\\[40pt]%
             \unitsnotes@teachers
         \fi%
-        \\[50pt]%
+        \\[100pt]%
         %
         % Authors
         %
@@ -129,18 +157,7 @@
         \else%
             \unitsnotes@authors%
         \fi%
-        \\[50pt]%
-        %
-        % Course
-        %
-        \ifx\unitsnotes@course\@empty%
-            \ \\[5pt]%
-            \textbf{\ }%
-        \else%
-            \ifstrequal{\unitsnotes@coursetype}{master}{\bMasterIn}{\bBachelorIn}\\[5pt]%
-            \textbf{\unitsnotes@course}%
-        \fi%
-        \\[50pt]%
+        \\[100pt]%
         %
         % Dates
         %

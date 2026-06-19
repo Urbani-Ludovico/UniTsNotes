@@ -6,6 +6,7 @@ myclass:side#K
 myclass:authors#K
 myclass:course#K
 myclass:coursetype#K
+myclass:department#K
 myclass:teachers#K
 myclass:teaching#K
 myclass:year#K
