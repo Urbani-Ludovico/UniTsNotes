@@ -57,6 +57,7 @@ By default, the available environments are:
             <li>label: "Proof"</li>
             <li>reference prefix: "thproof"</li>
             <li>default color: red!90!black</li>
+            <li>not numbered</li>
         </ul>
     </li>
 </ul>
