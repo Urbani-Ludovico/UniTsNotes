@@ -24,14 +24,8 @@
 \DeclareStringOption{teaching}
 \DeclareStringOption{year}
 
-\DeclareStringOption{stylealgorithm}
-\DeclareStringOption{styledefinition}
-\DeclareStringOption{stylelemma}
-\DeclareStringOption{styleobservation}
-\DeclareStringOption{styleproof}
-\DeclareStringOption{styleproperty}
-\DeclareStringOption{styleproposition}
-\DeclareStringOption{styletheorem}
+\DeclareStringOption[blue!80!white]{definitionColor}
+\DeclareStringOption[red!90!black]{theoremColor}
 
 \ProcessKeyvalOptions*
 
@@ -264,7 +258,7 @@
         bottomtitle=2pt,
         lefttitle=5pt,
         righttitle=5pt,
-        colframe=cyan,
+        colframe=cyan!75!black,
         coltitle=white,
         fonttitle=\bfseries,
         colback=white,
@@ -278,38 +272,39 @@
         pad at break*=0mm,
         break at=0pt,
         before skip=20pt,
-        after skip=20pt,
         after skip=20pt
     }
 }
 
-\NewDocumentCommand{\NewTcb}{s m m m m}{%
+% environment, ref, label, color, style
+\NewDocumentCommand{\NewTh}{s m m m m m}{%
     \IfBooleanTF{#1}{%
         % Starred version
-        \newtcbtheorem[no counter]{#2}{#4}{style,#5}{#3}%
+        \newtcbtheorem[no counter]{#2}{#4}{style,colframe=#5,#6}{#3}%
     }{%
         % Normal version
-        \newtcbtheorem[auto counter, number within=chapter]{#2}{#4}{style,#5}{#3}%
+        \newtcbtheorem[auto counter, number within=chapter]{#2}{#4}{style,colframe=#5,#6}{#3}%
     }%
 }
 
-\NewTcb{algorithm}{alg}{\bAlgorithm}{colframe=orange!75!black,\unitsnotes@styledefinition}
-\NewTcb{definition}{def}{\bDefinition}{colframe=cyan!75!black,\unitsnotes@styledefinition}
-\NewTcb{lemma}{lm}{\bLemma}{colframe=red!75!black,\unitsnotes@stylelemma}
-\NewTcb{observation}{obs}{\bObservation}{colframe=green!75!black,\unitsnotes@styleobservation}
-\NewTcb{property}{prp}{\bProperty}{colframe=red!75!black,\unitsnotes@styleobservation}
-\NewTcb{proposition}{prop}{\bProposition}{colframe=red!75!black,\unitsnotes@styleobservation}
-\NewTcb{theorem}{th}{\bTheorem}{colframe=red!75!black,\unitsnotes@styletheorem}
-
-\NewTcb*{proof}{pr}{\bProof}{%
-    colframe=white,%
-    boxrule=0pt,%
-    overlay={%
-        \draw[red!75!black, line width=1pt] ([xshift=0.5pt]frame.north west) -- ([xshift=0.5pt]frame.south west);%
-        \node[anchor=east, yshift=5pt] at (frame.south east) {$\square$};%
-    },%
-    sharp corners,%
-    coltitle=black,%
-    colbacktitle=white,%
-    \unitsnotes@styleproof%
+% environment, ref, label, color, style
+\NewDocumentCommand{\NewThProof}{m m m m m}{%
+    \newtcbtheorem[no counter]{#1}{#3}{%
+        style,%
+        colframe=white,%
+        boxrule=0pt,%
+        overlay={%
+            \draw[#4, line width=1pt] ([xshift=0.5pt]frame.north west) -- ([xshift=0.5pt]frame.south west);%
+            \node[anchor=east, yshift=5pt] at (frame.south east) {$\square$};%
+        },%
+        sharp corners,%
+        coltitle=black,%
+        colbacktitle=white,%
+        #5%
+    }{#2}%
 }
+
+\NewTh{definition}{th}{\bDefinition}{\unitsnotes@definitionColor}{}
+\NewTh{theorem}{th}{\bTheorem}{\unitsnotes@theoremColor}{}
+
+\NewThProof{thproof}{thpr}{\bProof}{\unitsnotes@theoremColor}{}
