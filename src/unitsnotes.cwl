@@ -1,16 +1,21 @@
 
 \LoadClass{book}
+
 myclass:language#K
 myclass:margins#K
 myclass:papersize#K
 myclass:side#K
+
 myclass:authors#K
 myclass:course#K
-myclass:coursetype#K
+myclass:courseType#K
 myclass:department#K
 myclass:teachers#K
 myclass:teaching#K
 myclass:year#K
+
+myclass:definitionColor#K
+myclass:theoremColor#K
 
 
 % ========================================
@@ -37,13 +42,9 @@ myclass:year#K
 
 #include:tcolorbox
 
-\NewTcb{cmd}#[arg1]{environment}{ref}{label}{style}
+\NewTh{cmd}#[star]{environment}{ref}{label}{color}{style}
+\NewThProof{cmd}#{environment}{ref}{label}{color}{style}
 
-\begin{algorithm}#label#code\end{algorithm}
 \begin{definition}#label#code\end{definition}
-\begin{lemma}#label#code\end{lemma}
-\begin{observation}#label#code\end{observation}
-\begin{prof}#label#code\end{proof}
-\begin{property}#label#code\end{property}
-\begin{proposition}#label#code\end{proposition}
 \begin{theorem}#label#code\end{theorem}
+\begin{thproof}#label#code\end{thproof}
