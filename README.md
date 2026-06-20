@@ -18,7 +18,7 @@ Base class for write UniTs notes in Latex.
 | ---------- | -------- | -------------------- | ------------------------------------------------------------- |
 | authors    |          |                      | Authors lists                                                 |
 | course     |          |                      | Course name                                                   |
-| coursetype | bachelor | bachelor, master     | Course type code                                              |
+| courseType | bachelor | bachelor, master     | Course type code                                              |
 | department |          | deams, df, dia, mige | Department code for set the logo, if empty UniTs logo is used |
 | teachers   |          |                      | Teachers name, with prefix                                    |
 | teaching   |          |                      | Teaching name                                                 |

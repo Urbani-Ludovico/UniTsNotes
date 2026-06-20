@@ -18,7 +18,7 @@
 
 \DeclareStringOption{authors}
 \DeclareStringOption{course}
-\DeclareStringOption{coursetype}
+\DeclareStringOption{courseType}
 \DeclareStringOption{department}
 \DeclareStringOption{teachers}
 \DeclareStringOption{teaching}
@@ -194,7 +194,7 @@
         %
         \ifx\unitsnotes@course\@empty%
         \else%
-            \ifstrequal{\unitsnotes@coursetype}{master}{\bMasterIn}{\bBachelorIn}\\[10pt]%
+            \ifstrequal{\unitsnotes@courseType}{master}{\bMasterIn}{\bBachelorIn}\\[10pt]%
             \textbf{\Large \unitsnotes@course}%
         \fi%
         \vfill%
