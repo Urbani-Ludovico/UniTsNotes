@@ -51,15 +51,6 @@ By default, the available environments are:
             <li>default color: red!90!black</li>
         </ul>
     </li>
-    <li>
-        <code>thproof</code>
-        <ul>
-            <li>label: "Proof"</li>
-            <li>reference prefix: "thproof"</li>
-            <li>default color: red!90!black</li>
-            <li>not numbered</li>
-        </ul>
-    </li>
 </ul>
 
 To add more environments, there are the commands:
@@ -79,14 +70,6 @@ To add more environments, there are the commands:
     {label}
     {color}
     {style}
-
-% Proof
-\NewThProof
-    {environment name}
-    {reference name}
-    {label}
-    {color}
-    {style}
 ```
 with the arguments:
 - environment name: the name to use in `\begin{} \end{}`.
@@ -95,18 +78,17 @@ with the arguments:
 - color: color for box and title.
 - style: more style in accord with tcolorbox documentation.
 
+For each environment a proof environment will be created with the name "{env reference}-proof" with the same color. For example for environment "theorem", the proof environment is "theorem-proof".
+
 Example of use:
 ```latex
 \begin{theorem}{Test theorem}{test}
     This is a test theorem.
 \end{theorem}
-```
-where first argument is the label and the second is the reference name.
 
-Base proof environment
-```latex
-\begin{thproof}{}{}
+\begin{thproof}[proof-ref]{test}
     This is a proof for the test theorem.
 \end{thproof}
 ```
-has only title "Proof". If is have to point to a theorem not directly above, the `theorem \ref{th:}` title can be added as first argument.
+For the theorem, first argument of the theorem is the label and the second is the reference name.
+For the proof the optional argument (set only if necessary) is the reference of the proof, the second is the reference of the parent theorem (without the prefix).

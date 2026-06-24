@@ -76,13 +76,9 @@
         \SetString{\bNotes}{Appunti}
         \SetString{\bNotesOf}{Appunti di}
 
-        \SetString{\bAlgorithm}{Algoritmo}
         \SetString{\bDefinition}{Definizione}
         \SetString{\bLemma}{Lemma}
-        \SetString{\bObservation}{Osservazione}
         \SetString{\bProof}{Dimostrazione}
-        \SetString{\bProperty}{Proprietà}
-        \SetString{\bProposition}{Proposizione}
         \SetString{\bTheorem}{Teorema}
     \EndBabelCommands
     
@@ -94,13 +90,9 @@
         \SetString{\bNotes}{Notes}
         \SetString{\bNotesOf}{Notes of}
 
-        \SetString{\bAlgorithm}{Algorithm}
         \SetString{\bDefinition}{Definition}
         \SetString{\bLemma}{Lemma}
-        \SetString{\bObservation}{Observation}
         \SetString{\bProof}{Proof}
-        \SetString{\bProperty}{Property}
-        \SetString{\bProposition}{Proposition}
         \SetString{\bTheorem}{Theorem}
     \EndBabelCommands
 }
@@ -246,6 +238,7 @@
 % ========================================
 
 \RequirePackage[many]{tcolorbox}
+\tcbuselibrary{theorems, breakable}
 
 \tcbset{
     style/.style={
@@ -258,7 +251,7 @@
         bottomtitle=2pt,
         lefttitle=5pt,
         righttitle=5pt,
-        colframe=cyan!75!black,
+        colframe=blue!80!white,
         coltitle=white,
         fonttitle=\bfseries,
         colback=white,
@@ -280,31 +273,38 @@
 \NewDocumentCommand{\NewTh}{s m m m m m}{%
     \IfBooleanTF{#1}{%
         % Starred version
-        \newtcbtheorem[no counter]{#2}{#4}{style,colframe=#5,#6}{#3}%
+        \newtcbtheorem[no counter]{#2}{#4}{%
+            style,%
+            colframe=#5,%
+            #6%
+        }{#3}%
     }{%
         % Normal version
-        \newtcbtheorem[auto counter, number within=chapter]{#2}{#4}{style,colframe=#5,#6}{#3}%
+        \newtcbtheorem[auto counter, number within=chapter]{#2}{#4}{%
+            style,%
+            colframe=#5,%
+            #6%
+        }{#3}%
     }%
-}
 
-% environment, ref, label, color, style
-\NewDocumentCommand{\NewThProof}{m m m m m}{%
-    \newtcbtheorem[no counter]{#1}{#3}{%
+    \expandafter\def\csname tcb@cnt@#2autorefname\endcsname{#4}
+
+    \newtcbtheorem[no counter]{tbc-#2-proof}{\bProof}{%
         style,%
         colframe=white,%
         boxrule=0pt,%
         overlay={%
-            \draw[#4, line width=1pt] ([xshift=0.5pt]frame.north west) -- ([xshift=0.5pt]frame.south west);%
+            \draw[#5, line width=1pt] ([xshift=0.5pt]frame.north west) -- ([xshift=0.5pt]frame.south west);%
             \node[anchor=east, yshift=5pt] at (frame.south east) {$\square$};%
         },%
         sharp corners,%
         coltitle=black,%
         colbacktitle=white,%
-        #5%
-    }{#2}%
+        #6%
+    }{#4-proof}%
+
+    \newenvironment{#2-proof}[2][proof]{\begin{tbc-#2-proof}{\autoref{#3:##2}}{##1}}{\end{tbc-#2-proof}}
 }
 
-\NewTh{definition}{th}{\bDefinition}{\unitsnotes@definitionColor}{}
+\NewTh{definition}{def}{\bDefinition}{\unitsnotes@definitionColor}{}
 \NewTh{theorem}{th}{\bTheorem}{\unitsnotes@theoremColor}{}
-
-\NewThProof{thproof}{thpr}{\bProof}{\unitsnotes@theoremColor}{}
