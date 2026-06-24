@@ -43,8 +43,8 @@ myclass:theoremColor#K
 #include:tcolorbox
 
 \NewTh{cmd}#[star]{environment}{ref}{label}{color}{style}
-\NewThProof{cmd}#{environment}{ref}{label}{color}{style}
 
-\begin{definition}#label#code\end{definition}
-\begin{theorem}#label#code\end{theorem}
-\begin{thproof}#label#code\end{thproof}
+env{definition}{arg}{arg}
+env{definition-proof}{opt}{arg}
+env{theorem}{arg}{arg}
+env{theorem-proof}{opt}{arg}
