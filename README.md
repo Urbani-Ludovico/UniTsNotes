@@ -92,3 +92,16 @@ Example of use:
 ```
 For the theorem, first argument of the theorem is the label and the second is the reference name.
 For the proof the optional argument (set only if necessary) is the reference of the proof, the second is the reference of the parent theorem (without the prefix).
+
+### Available colors
+
+- <span style="background: #222222; margin-right: 10px; padding-left: 1cm;"></span>thc-black
+- <span style="background: #0000DD; margin-right: 10px; padding-left: 1cm;"></span>thc-blue
+- <span style="background: #804000; margin-right: 10px; padding-left: 1cm;"></span>thc-brown
+- <span style="background: #009999; margin-right: 10px; padding-left: 1cm;"></span>thc-cyan
+- <span style="background: #606060; margin-right: 10px; padding-left: 1cm;"></span>thc-gray
+- <span style="background: #00AA00; margin-right: 10px; padding-left: 1cm;"></span>thc-green
+- <span style="background: #C000C0; margin-right: 10px; padding-left: 1cm;"></span>thc-magenta
+- <span style="background: #EE7000; margin-right: 10px; padding-left: 1cm;"></span>thc-orange
+- <span style="background: #DD0000; margin-right: 10px; padding-left: 1cm;"></span>thc-red
+- <span style="background: #800080; margin-right: 10px; padding-left: 1cm;"></span>thc-violet

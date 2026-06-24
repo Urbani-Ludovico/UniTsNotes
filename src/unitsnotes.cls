@@ -1,6 +1,25 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{unitsnotes}[2026/06/01 Latex class for UniTs notes]
 
+
+% ========================================
+% Constants
+% ========================================
+
+\RequirePackage{xcolor}
+
+\definecolor{thc-black}{HTML}{222222}
+\definecolor{thc-blue}{HTML}{0000DD}
+\definecolor{thc-brown}{HTML}{804000}
+\definecolor{thc-cyan}{HTML}{009999}
+\definecolor{thc-gray}{HTML}{606060}
+\definecolor{thc-green}{HTML}{00AA00}
+\definecolor{thc-magenta}{HTML}{C000C0}
+\definecolor{thc-orange}{HTML}{EE7000}
+\definecolor{thc-red}{HTML}{DD0000}
+\definecolor{thc-violet}{HTML}{800080}
+
+
 % ========================================
 % Options
 % ========================================
@@ -24,8 +43,8 @@
 \DeclareStringOption{teaching}
 \DeclareStringOption{year}
 
-\DeclareStringOption[blue!80!white]{definitionColor}
-\DeclareStringOption[red!90!black]{theoremColor}
+\DeclareStringOption[thc-blue]{definitionColor}
+\DeclareStringOption[thc-red]{theoremColor}
 
 \ProcessKeyvalOptions*
 
@@ -106,7 +125,6 @@
 \RequirePackage{amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
-\RequirePackage{xcolor}
 
 
 % ========================================
