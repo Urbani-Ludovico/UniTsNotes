@@ -321,7 +321,15 @@
         #6%
     }{#4-proof}%
 
-    \newenvironment{#2-proof}[2][proof]{\begin{tbc-#2-proof}{\autoref{#3:##2}}{##1}}{\end{tbc-#2-proof}}
+    \newenvironment{#2-proof}[2][proof]{%
+        \ifblank{##2}{%
+            \begin{tbc-#2-proof}{}{##1}%
+        }{%
+            \begin{tbc-#2-proof}{\autoref{#3:##2}}{##1}%
+        }%
+    }{%
+        \end{tbc-#2-proof}%
+    }%
 }
 
 \NewTh{definition}{def}{\bDefinition}{\unitsnotes@definitionColor}{}

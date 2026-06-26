@@ -91,7 +91,7 @@ Example of use:
 \end{thproof}
 ```
 For the theorem, first argument of the theorem is the label and the second is the reference name.
-For the proof the optional argument (set only if necessary) is the reference of the proof, the second is the reference of the parent theorem (without the prefix).
+For the proof the optional argument (set only if necessary) is the reference of the proof, the second (if set) is the reference of the parent theorem (without the prefix).
 
 ### Available colors
 
