@@ -311,6 +311,9 @@
         style,%
         colframe=white,%
         boxrule=0pt,%
+        overlay={%
+            \draw[#5, line width=1pt] ([xshift=0.5pt]frame.north west) -- ([xshift=0.5pt]frame.south west);%
+        },%
         overlay last={%
             \draw[#5, line width=1pt] ([xshift=0.5pt]frame.north west) -- ([xshift=0.5pt]frame.south west);%
             \node[anchor=east, yshift=5pt] at (frame.south east) {$\square$};%
