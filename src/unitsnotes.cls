@@ -255,6 +255,7 @@
 % Theorem environments
 % ========================================
 
+\RequirePackage{footnote}
 \RequirePackage[many]{tcolorbox}
 \tcbuselibrary{theorems, breakable}
 
@@ -283,7 +284,14 @@
         pad at break*=0mm,
         break at=0pt,
         before skip=20pt,
-        after skip=20pt
+        after skip=20pt,
+        before upper={%
+            \renewcommand{\thempfootnote}{\arabic{mpfootnote}}%
+            \setcounter{mpfootnote}{\value{footnote}}%
+        },
+        after upper={%
+            \setcounter{footnote}{\value{mpfootnote}}%
+        }
     }
 }
 
@@ -332,6 +340,9 @@
     }{%
         \end{tbc-#2-proof}%
     }%
+
+    \makesavenoteenv{#2}%
+    \makesavenoteenv{#2-proof}%
 }
 
 \NewTh{definition}{def}{\bDefinition}{\unitsnotes@definitionColor}{}

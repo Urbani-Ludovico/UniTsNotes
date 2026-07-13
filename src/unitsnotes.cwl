@@ -40,6 +40,7 @@ myclass:theoremColor#K
 % Theorem environments
 % ========================================
 
+#include:footnote
 #include:tcolorbox
 
 \NewTh{cmd}#[star]{environment}{ref}{label}{color}{style}
