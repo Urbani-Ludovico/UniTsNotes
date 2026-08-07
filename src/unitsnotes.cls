@@ -89,6 +89,7 @@
 \AddToHook{package/babel/after}{
     \StartBabelCommands*{italian}{captions}
         \SetString{\bAA}{Anno accademico}
+        \SetString{\bAlgorithm}{Algoritmo}
         \SetString{\bLastEdit}{Aggiornato il}
         \SetString{\bBachelorIn}{Corso di Laurea in}
         \SetString{\bMasterIn}{Laurea Magistrale in}
@@ -103,6 +104,7 @@
     
     \StartBabelCommands*{english}{captions}
         \SetString{\bAA}{Academic Year}
+        \SetString{\bAlgorithm}{Algorithm}
         \SetString{\bBachelorIn}{Bachelor in}
         \SetString{\bLastEdit}{Last edit}
         \SetString{\bMasterIn}{Master's Degree in}
@@ -121,8 +123,6 @@
 % Other Packages
 % ========================================
 
-\RequirePackage{amsmath}
-\RequirePackage{amssymb}
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 
@@ -172,7 +172,7 @@
 
 
 % ========================================
-% Title pages
+% Title page
 % ========================================
 
 \RequirePackage{etoolbox}
@@ -252,6 +252,25 @@
 
 
 % ========================================
+% Math
+% ========================================
+
+\RequirePackage{amsmath}
+
+\RequirePackage{amssymb}
+% mathds for digits
+\RequirePackage{dsfont}
+
+\RequirePackage{mathtools}
+
+\RequirePackage{array}
+
+\renewcommand{\arraystretch}{1.5}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+% ========================================
 % Theorem environments
 % ========================================
 
@@ -299,18 +318,24 @@
 \NewDocumentCommand{\NewTh}{s m m m m m}{%
     \IfBooleanTF{#1}{%
         % Starred version
-        \newtcbtheorem[no counter]{#2}{#4}{%
+        \newtcbtheorem[no counter]{tbc-#2}{#4}{%
             style,%
             colframe=#5,%
             #6%
         }{#3}%
     }{%
         % Normal version
-        \newtcbtheorem[auto counter, number within=chapter]{#2}{#4}{%
+        \newtcbtheorem[auto counter, number within=chapter]{tbc-#2}{#4}{%
             style,%
             colframe=#5,%
             #6%
         }{#3}%
+    }%
+
+    \NewDocumentEnvironment{#2}{ o m }{%
+        \begin{tbc-#2}{##2}{##1}%
+    }{%
+        \end{tbc-#2}%
     }%
 
     \expandafter\def\csname tcb@cnt@#2autorefname\endcsname{#4}
@@ -333,10 +358,10 @@
         coltitle=black,%
         colbacktitle=white,%
         #6%
-    }{#4-proof}%
+    }{#3-proof}%
 
-    \newenvironment{#2-proof}[2][proof]{%
-        \begin{tbc-#2-proof}{##2}{##1}%
+    \NewDocumentEnvironment{#2-proof}{ m }{%
+        \begin{tbc-#2-proof}{##1}{}%
     }{%
         \end{tbc-#2-proof}%
     }%
@@ -347,3 +372,31 @@
 
 \NewTh{definition}{def}{\bDefinition}{\unitsnotes@definitionColor}{}
 \NewTh{theorem}{th}{\bTheorem}{\unitsnotes@theoremColor}{}
+
+% ========================================
+% Algorithms
+% ========================================
+
+\tcbuselibrary{minted}
+
+\setminted{
+    style=colorful,
+    fontsize=\small,
+    breaklines=true,
+    numbersep=10pt,
+    autogobble=true,
+    linenos=true
+}
+
+\newcounter{AlgorithmCounter}[chapter]
+
+\NewTCBListing[use counter=AlgorithmCounter, number within=chapter]{algorithm}{o m m}{
+    listing only,
+    listing engine=minted,
+    minted language=#2,
+    colframe=thc-orange,
+    title={\bAlgorithm~\thetcbcounter\ifstrempty{#3}{}{: #3}},
+    top=4pt,
+    bottom=4pt,
+    label={alg:#1}
+}

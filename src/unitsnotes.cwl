@@ -2,7 +2,6 @@
 \LoadClass{book}
 
 myclass:language#K
-myclass:margins#K
 myclass:papersize#K
 myclass:side#K
 
@@ -22,18 +21,30 @@ myclass:theoremColor#K
 % Packages
 % ========================================
 
-#include:amsmath
-#include:amssymb
 #include:hyperref
 #include:graphicx
 
 
 % ========================================
-% Layout
+% Title page
 % ========================================
 
 #include:etoolbox
 #include:ifthen
+
+
+% ========================================
+% Math
+% ========================================
+
+#include:amsmath
+#include:amssymb
+#include:dsfont
+#include:mathtools
+#include:array
+
+\argmax
+\argmin
 
 
 % ========================================
@@ -45,7 +56,14 @@ myclass:theoremColor#K
 
 \NewTh{cmd}#[star]{environment}{ref}{label}{color}{style}
 
-env{definition}{arg}{arg}
-env{definition-proof}{opt}{arg}
-env{theorem}{arg}{arg}
-env{theorem-proof}{opt}{arg}
+env{definition}{opt}{arg}
+env{definition-proof}{arg}
+env{theorem}{opt}{arg}
+env{theorem-proof}{arg}
+
+
+% ========================================
+% Algorithms
+% ========================================
+
+env{algorithm}{opt}{arg}{arg}
