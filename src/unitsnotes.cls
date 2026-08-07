@@ -333,12 +333,17 @@
     }%
 
     \NewDocumentEnvironment{#2}{ o m }{%
-        \begin{tbc-#2}{##2}{##1}%
+        \IfNoValueTF{##1}{%
+            \begin{tbc-#2}{##2}{}%
+        }{%
+            \begin{tbc-#2}{##2}{##1}%
+        }%
     }{%
         \end{tbc-#2}%
     }%
 
-    \expandafter\def\csname tcb@cnt@#2autorefname\endcsname{#4}
+    \expandafter\def\csname #2autorefname\endcsname{#4}%
+    \expandafter\def\csname tcb@cnt@tbc-#2autorefname\endcsname{#4}%
 
     \newtcbtheorem[no counter]{tbc-#2-proof}{\bProof}{%
         style,%
